@@ -1,0 +1,27 @@
+{
+  "name": "sepm_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drshn-k/Attendance-Collector-Using-QR-Code.git"
+  },
+  "keywords": [],
+  "author": "drshn_k <darshan.kasar20@pccoepune.org>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drshn-k/Attendance-Collector-Using-QR-Code/issues"
+  },
+  "homepage": "https://github.com/drshn-k/Attendance-Collector-Using-QR-Code#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "html5-qrcode": "^2.3.7",
+    "mongoose": "^6.10.0"
+  }
+}
