@@ -125,15 +125,15 @@
 
             requestAnimationFrame(scanQRCode);
         }
-
-        video.addEventListener('play', () => {
+console.log(scannedData);
+video.addEventListener('play', () => {
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
             scanQRCode();
         });
     </script>
 
-    
+
 </body>
 
 </html>
