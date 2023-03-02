@@ -1,0 +1,62 @@
+<!-- v2.0 -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>QR Code Scanner</title>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+
+    <style>
+        #video {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <video id="video"></video>
+
+    <script>
+        const video = document.getElementById('video');
+        const scannedData = [];
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+                video.play();
+            })
+            .catch(error => {
+                console.error(`Could not access the camera: ${error}`);
+            });
+
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+
+        function scanQRCode() {
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const code = jsQR(imageData.data, imageData.width, imageData.height);
+
+            if (code) {
+                const decodedMessage = code.data;
+                scannedData.push(decodedMessage);
+                console.log(`QR code detected: ${decodedMessage}`);
+            }
+
+            requestAnimationFrame(scanQRCode);
+        }
+
+        video.addEventListener('play', () => {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            scanQRCode();
+        });
+    </script>
+
+
+</body>
+
+</html>
